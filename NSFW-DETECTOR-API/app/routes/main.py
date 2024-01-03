@@ -1,4 +1,4 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Request
 from app.models import PhotoRequest
 
 
@@ -11,5 +11,6 @@ async def upload_photo(photo_request: PhotoRequest):
 
 
 @router.get("/")
-async def main():
-    return "Welcome to the NSFW Detector API, visit http://127.0.0.1:8000/docs to view all endpoints"
+async def main(request: Request):
+    base_url = request.base_url
+    return f"Welcome to the NSFW Detector API, visit {base_url}docs to view all endpoints"
